@@ -11,8 +11,14 @@
 |
 */
 
+Auth::routes();
+
 Route::get('/', 'PagesController@index');
 Route::get('/about', 'PagesController@about');
+Route::get('/dashboard', 'DashboardController@index');
+Route::get('/play/{char_id}', 'PagesController@play');
+
+Route::resource('characters', 'CharactersController');
 
 // Direct route
 // Route::get('/about', function () {
@@ -24,6 +30,6 @@ Route::get('/about', 'PagesController@about');
 //     return "This is user" . $id . ". Name is:". $name;
 // });
 
-Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+
+
