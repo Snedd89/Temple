@@ -33,6 +33,7 @@ class CharactersController extends Controller
             // User has a character already made
             foreach($characters as $char) {
                 $name = $char->name;
+                $id = $char->id;
                 $gender = $char->gender;
                 // Gender condition
                 if($gender == 1) {
@@ -85,6 +86,7 @@ class CharactersController extends Controller
                 // User has Secondary character
                 foreach($d_characters as $d_char) {
                     $d_name = $d_char->name;
+                    $d_id = $d_char->id;
                     $d_gender = $d_char->gender;
                     // Gender condition
                     if($d_gender == 1) {
@@ -127,6 +129,7 @@ class CharactersController extends Controller
                 $data = [
                     'characters' => $char_count,
                     'name' => $name,
+                    'id' => $id,
                     'char_type' => 2,
                     'gender' => $gender,
                     'status' => $status,
@@ -144,6 +147,7 @@ class CharactersController extends Controller
                     'created_at' => $created_at,
                     'd_characters' => $d_char_count,
                     'd_name' => $d_name,
+                    'd_id' => $d_id,
                     'd_gender' => $d_gender,
                     'd_status' => $d_status,
                     'd_temple' => $d_temple,
@@ -165,6 +169,7 @@ class CharactersController extends Controller
                     'characters' => $char_count,
                     'd_characters' => $d_char_count,
                     'name' => $name,
+                    'id' => $id,
                     'char_type' => 1,
                     'gender' => $gender,
                     'status' => $status,
@@ -183,13 +188,13 @@ class CharactersController extends Controller
                 ];
             }
 
-            return view('pages.characters')->with($data);
+            return view('pages.characters')->with('data', $data);
         } else {
             // User has no characters
             $data = [
                 'characters' => $char_count,
             ];
-            return view('pages.characters')->with($data);
+            return view('pages.characters')->with('data', $data);
         }
     }
 
@@ -225,11 +230,11 @@ class CharactersController extends Controller
         $character->gender = $request->input('input-gender');
         // Set correct temple location for chosen temple
         if($character->temple == 1) {
-            $character->location = 10;
+            $character->location = 58;
         } elseif ($character->temple == 2) {
-            $character->location = 20;
+            $character->location = 64;
         } else {
-            $character->location = 30;
+            $character->location = 117;
         }
 
         $character->save();

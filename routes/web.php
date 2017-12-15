@@ -17,6 +17,7 @@ Route::get('/', 'PagesController@index');
 Route::get('/about', 'PagesController@about');
 Route::get('/dashboard', 'DashboardController@index');
 Route::get('/play/{char_id}', 'PagesController@play');
+Route::get('/action/{char_id}/{direction}', 'ActionsController@travel');
 
 Route::resource('characters', 'CharactersController');
 

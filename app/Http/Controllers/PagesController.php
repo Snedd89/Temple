@@ -10,7 +10,7 @@ class PagesController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth', ['except' => ['index', 'about']]);
     }
     //
     public function index(){
@@ -36,6 +36,7 @@ class PagesController extends Controller
                     // Confirmed user has a character with $char_type
                     foreach($characters as $char) {
                         $name = $char->name;
+                        $id = $char->id;
                         $gender = $char->gender;
                         // Gender condition
                         if($gender == 1) {
@@ -78,6 +79,7 @@ class PagesController extends Controller
                         $data = [
                             'characters' => $char_count,
                             'name' => $name,
+                            'id' => $id,
                             'char_type' => $char_type,
                             'gender' => $gender,
                             'status' => $status,
@@ -96,7 +98,7 @@ class PagesController extends Controller
                         ];
                     }
                     
-                    return view("pages.play")->with($data);
+                    return view("pages.play")->with('data', $data);
                 
                 } else {
                     return redirect("/characters")->with('error','Invalid character.');

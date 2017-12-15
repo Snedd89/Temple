@@ -13,7 +13,7 @@ class Character extends Model
     // Timestamps
     public $timestamps = false;
 
-    // Relate booking to the user
+    // Relate character to the user
     public function user(){
         return $this->belongsTo('App\User');
     }
